@@ -10,14 +10,20 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/employees', [EmployeeController::class, 'all']);
-Route::post('/employees', [EmployeeController::class, 'create']);
-Route::put('/employees/{id}', [EmployeeController::class, 'update']);
-Route::delete('/employees/{id}', [EmployeeController::class, 'delete']);
+Route::controller(EmployeeController::class)->group(function () {
+    Route::get('/employees', 'all');
+    Route::post('/employees', 'create');
+    Route::put('/employees/{id}', 'update');
+    Route::delete('/employees/{id}', 'delete');
+});
 
-Route::get('/contracts', [ContractController::class, 'all']);
-Route::post('/contracts', [ContractController::class, 'create']);
-Route::put('/contracts/{id}', [ContractController::class, 'update']);
+Route::controller(ContractController::class)->group(function () {
+    Route::get('/contracts', 'all');
+    Route::post('/contracts', 'create');
+    Route::put('/contracts/{id}', 'update');
+});
 
-Route::get('/certifications/{id}', [CertificateController::class, 'find']);
-Route::post('/certifications', [CertificateController::class, 'create']);
+Route::controller(CertificateController::class)->group(function () {
+    Route::get('/certifications/{id}', 'find');
+    Route::post('/certifications', 'create');
+});
