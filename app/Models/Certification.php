@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Certification extends Model
 {
@@ -11,7 +12,7 @@ class Certification extends Model
 
     public $hidden = ['pivot', 'created_at', 'updated_at'];
 
-    public function employees(): mixed
+    public function employees(): BelongsToMany
     {
         return $this->belongsToMany(Employee::class);
     }

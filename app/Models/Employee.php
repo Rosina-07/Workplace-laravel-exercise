@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Employee extends Model
 {
@@ -16,7 +17,7 @@ class Employee extends Model
         return $this->belongsTo(Contract::class);
     }
 
-    public function certifications(): mixed
+    public function certifications(): BelongsToMany
     {
         return $this->belongsToMany(Certification::class);
     }
