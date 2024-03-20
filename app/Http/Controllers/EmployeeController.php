@@ -71,7 +71,7 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
 
         if (! $employee) {
-            return response('Error invalid product id');
+            return response('Error invalid Employee id');
         }
 
         $employee->delete();
